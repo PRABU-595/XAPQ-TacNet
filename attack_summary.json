@@ -1,0 +1,11 @@
+{
+  "scenario_a_tpr_pct": 100.0,
+  "scenario_b_tpr_pct": 100.0,
+  "scenario_a_step_tpr_pct": 100.0,
+  "scenario_b_step_tpr_pct": 33.3993399339934,
+  "overall_fpr_pct": 11.176063046678792,
+  "hf_jamming_fpr_pct": 0.0,
+  "hf_false_alerts": 0,
+  "security_preservation_ratio_scen_a": 1.02,
+  "security_preservation_ratio_scen_b": 1.0455855383809274
+}

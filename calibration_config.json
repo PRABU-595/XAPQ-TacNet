@@ -1,0 +1,15 @@
+{
+  "calibrated_threshold": 11.88,
+  "per_link_thresholds": {
+    "VLF": 3.5,
+    "HF": 3.5,
+    "UHF": 8387103.6,
+    "SATCOM": 11.88
+  },
+  "false_alarm_rate": 0.05045871559633028,
+  "jamming_false_alarm_rate": 0.0,
+  "total_legitimate_downgrades": 2834,
+  "total_jamming_downgrades": 0,
+  "calibration_seeds": 30,
+  "calibration_date": "2026-07-28 22:11:42"
+}

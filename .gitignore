@@ -1,0 +1,20 @@
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Large Data & Audit Logs (>100MB limit on GitHub)
+audit_log.json
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

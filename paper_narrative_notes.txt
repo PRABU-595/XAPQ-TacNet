@@ -1,0 +1,34 @@
+CORRECT framing for Table 2 in the paper:
+
+"Table 2 presents the comprehensive performance comparison across 30 Monte Carlo 
+seeds. CAAP-adapted achieves the highest adaptation accuracy (100%) through 
+exhaustive multi-objective optimization via NSGA-II, with statistically significant 
+superiority over XAPQ-TacNet (p = 9.03×10⁻⁴). However, this accuracy advantage 
+comes at substantial cost: NSGA-II requires approximately 200 ms per selection 
+decision with zero explainability, whereas XAPQ-TacNet achieves 82.8% adaptation 
+accuracy with 9.68 μs mean explanation generation time — a 20,000× speedup — 
+while providing dual-granularity decision auditability and adversarial channel-
+spoofing detection.
+
+XAPQ-TacNet significantly outperforms Random selection (p = 1.64×10⁻⁵) and 
+achieves comparable overall reward to Static and Rule-Based baselines (p = 0.5895 
+and p = 0.4553, respectively — not statistically significant) while providing 
+superior adaptation accuracy (82.8% vs 68.8% and 68.3%). The 17.2% accuracy gap 
+between XAPQ-TacNet and CAAP represents the cost of inherent interpretability — 
+a trade-off that defense operators may accept given the doctrinal requirement for 
+meaningful human control over autonomous cryptographic decisions."
+
+DO NOT write any of these:
+- "XAPQ-TacNet matches CAAP performance" (false, p < 0.001)
+- "XAPQ-TacNet achieves comparable performance to CAAP" (misleading)
+- "performance parity with CAAP" (false)
+
+DO write:
+- "XAPQ-TacNet trades [X]% accuracy for interpretability, speed, and adversarial resilience"
+- "CAAP achieves higher raw accuracy through exhaustive offline optimization"
+- "The accuracy gap is the cost of inherent interpretability"
+
+--------------------------------------------------------------------------------
+Figure 8 Panel B Post-Attack Narrative Sentence:
+"After attack cessation at step 850, the per-link agent requires approximately 20 steps to re-normalize its learned weights from the attack-period observations. Weight-resetting mechanisms upon attack-end detection are identified as future work."
+
