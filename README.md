@@ -1,8 +1,4 @@
 # XAPQ-TacNet: Explainable Adaptive Post-Quantum Cryptography Simulation Framework for Heterogeneous Tactical Networks
-
-**Submission Target:** IEEE WiCOMM-2026 (Track 2: Computing Technologies and Applications)  
-**Organization:** Defence Electronics Applications Laboratory (DEAL), DRDO, Dehradun  
-
 ---
 
 ## 📌 Framework Overview
