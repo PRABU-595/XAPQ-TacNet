@@ -37,15 +37,15 @@ NIST_SPECS = {
 # ==============================================================================
 PQM4_CYCLES = {
     # KEMs: keygen_cycles, encaps_cycles, decaps_cycles
-    "ML-KEM-512":  {"keygen": 458384,  "encaps": 553011,  "decaps": 513220},   # pqm4 kyber512 m4fspeed
-    "ML-KEM-768":  {"keygen": 761312,  "encaps": 878340,  "decaps": 811920},   # pqm4 kyber768 m4fspeed
-    "ML-KEM-1024": {"keygen": 1152430, "encaps": 1302110, "decaps": 1215450},  # pqm4 kyber1024 m4fspeed
+    "ML-KEM-512":  {"keygen": 392423,  "encaps": 390881,  "decaps": 428167},   # pqm4 ml-kem-512 m4fspeed
+    "ML-KEM-768":  {"keygen": 642096,  "encaps": 658754,  "decaps": 707827},   # pqm4 ml-kem-768 m4fspeed
+    "ML-KEM-1024": {"keygen": 1018976, "encaps": 1031565, "decaps": 1094008},  # pqm4 ml-kem-1024 m4fspeed
 
     # Signatures: keygen_cycles, sign_cycles, verify_cycles
-    "ML-DSA-44":   {"keygen": 1184300, "sign": 3412900,  "verify": 1290400},  # pqm4 dilithium2 m4fspeed
-    "ML-DSA-65":   {"keygen": 2150400, "sign": 5820100,  "verify": 2380100},  # pqm4 dilithium3 m4fspeed
-    "ML-DSA-87":   {"keygen": 3610200, "sign": 9480300,  "verify": 4290100},  # pqm4 dilithium5 m4fspeed
-    "SLH-DSA-128s":{"keygen": 11420100,"sign": 361200500,"verify": 4510200}, # pqm4 sphincs-shake-128s-simple
+    "ML-DSA-44":   {"keygen": 1426025, "sign": 3943121,  "verify": 1421623},  # pqm4 ml-dsa-44 m4f
+    "ML-DSA-65":   {"keygen": 2516006, "sign": 6193171,  "verify": 2415944},  # pqm4 ml-dsa-65 m4f
+    "ML-DSA-87":   {"keygen": 4275859, "sign": 7947380,  "verify": 4193104},  # pqm4 ml-dsa-87 m4f
+    "SLH-DSA-128s":{"keygen": 3231401965,"sign": 24553696412,"verify": 24366771}, # pqm4 sphincs-shake-128s-simple
 }
 
 # ==============================================================================

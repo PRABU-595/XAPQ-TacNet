@@ -16,7 +16,7 @@ from tactical_network import create_military_links, TacticalLink
 from feasibility_filter import get_feasible_actions, ALL_PQC_PAIRS, compute_feasibility_matrix
 from linucb_selector import LinUCBSelector, extract_context_vector, compute_reward, FEATURE_DIM
 from xai_engine import XAIEngine
-from baselines import StaticSelector, RandomSelector, RuleBasedSelector, CAAPAdaptedSelector
+from baselines import StaticSelector, RandomSelector, RuleBasedSelector, ExhaustiveOracleSelector
 
 
 def test_1_1_pqc_database():

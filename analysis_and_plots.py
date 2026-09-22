@@ -131,8 +131,8 @@ def _generate_figure1_architecture():
 # ------------------------------------------------------------------------------
 def _generate_figure2_security_timeseries(df: pd.DataFrame):
     links = ["VLF", "HF", "UHF", "SATCOM"]
-    methods = ["XAPQ_TacNet", "Static", "Random", "RuleBased", "CAAP_adapted"]
-    colors = {'XAPQ_TacNet': '#d62728', 'Static': '#1f77b4', 'Random': '#7f7f7f', 'RuleBased': '#ff7f0e', 'CAAP_adapted': '#2ca02c'}
+    methods = ["XAPQ-TacNet", "Static", "Random", "Rule-Based", "Exhaustive Oracle"]
+    colors = {'XAPQ-TacNet': '#d62728', 'Static': '#1f77b4', 'Random': '#7f7f7f', 'Rule-Based': '#ff7f0e', 'Exhaustive Oracle': '#2ca02c'}
 
     fig, axes = plt.subplots(2, 2, figsize=(10, 6), dpi=300, sharex=True)
     axes = axes.flatten()
@@ -167,7 +167,7 @@ def _generate_figure2_security_timeseries(df: pd.DataFrame):
     axes[2].set_xlabel("Simulation Step")
     axes[3].set_xlabel("Simulation Step")
     fig.legend(loc='upper center', bbox_to_anchor=(0.5, 1.02), ncol=5, frameon=True)
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout(rect=[0, 0, 1, 0.90])
     plt.savefig("figures/figure2_security_timeseries.pdf")
     plt.savefig("figures/figure2_security_timeseries.png")
     plt.close()
@@ -178,8 +178,8 @@ def _generate_figure2_security_timeseries(df: pd.DataFrame):
 # ------------------------------------------------------------------------------
 def _generate_figure3_latency_timeseries(df: pd.DataFrame):
     links = ["VLF", "HF", "UHF", "SATCOM"]
-    methods = ["XAPQ_TacNet", "Static", "Random", "RuleBased", "CAAP_adapted"]
-    colors = {'XAPQ_TacNet': '#d62728', 'Static': '#1f77b4', 'Random': '#7f7f7f', 'RuleBased': '#ff7f0e', 'CAAP_adapted': '#2ca02c'}
+    methods = ["XAPQ-TacNet", "Static", "Random", "Rule-Based", "Exhaustive Oracle"]
+    colors = {'XAPQ-TacNet': '#d62728', 'Static': '#1f77b4', 'Random': '#7f7f7f', 'Rule-Based': '#ff7f0e', 'Exhaustive Oracle': '#2ca02c'}
 
     fig, axes = plt.subplots(2, 2, figsize=(10, 6), dpi=300, sharex=True)
     axes = axes.flatten()
@@ -200,7 +200,7 @@ def _generate_figure3_latency_timeseries(df: pd.DataFrame):
     axes[2].set_xlabel("Simulation Step")
     axes[3].set_xlabel("Simulation Step")
     fig.legend(loc='upper center', bbox_to_anchor=(0.5, 1.02), ncol=6, frameon=True)
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout(rect=[0, 0, 1, 0.90])
     plt.savefig("figures/figure3_latency_timeseries.pdf")
     plt.savefig("figures/figure3_latency_timeseries.png")
     plt.close()
@@ -210,7 +210,7 @@ def _generate_figure3_latency_timeseries(df: pd.DataFrame):
 # Figure 4: Performance Bar Chart with Error Bars
 # ------------------------------------------------------------------------------
 def _generate_figure4_performance_barchart(df: pd.DataFrame):
-    methods = ["XAPQ_TacNet", "Static", "Random", "RuleBased", "CAAP_adapted"]
+    methods = ["XAPQ-TacNet", "Static", "Random", "Rule-Based", "Exhaustive Oracle"]
     
     # Aggregate across seeds
     seed_metrics = df.groupby(["seed", "method"]).agg({
@@ -243,7 +243,7 @@ def _generate_figure4_performance_barchart(df: pd.DataFrame):
         ax.bar(methods, vals, yerr=errs, capsize=3, color=colors, alpha=0.85)
         ax.set_title(title)
         ax.set_xticks(range(len(methods)))
-        ax.set_xticklabels(["XAPQ", "Static", "Rand", "Rule", "CAAP"], rotation=30)
+        ax.set_xticklabels(["XAPQ", "Static", "Rand", "Rule", "Oracle"], rotation=30)
         ax.grid(True, linestyle=':', alpha=0.5)
 
     plt.tight_layout()
@@ -256,7 +256,7 @@ def _generate_figure4_performance_barchart(df: pd.DataFrame):
 # Figure 5: PQC Selection Frequency Heatmap
 # ------------------------------------------------------------------------------
 def _generate_figure5_selection_heatmap(df: pd.DataFrame):
-    xapq_df = df[df["method"] == "XAPQ_TacNet"].copy()
+    xapq_df = df[df["method"] == "XAPQ-TacNet"].copy()
     xapq_df["pair"] = xapq_df["kem"] + "+" + xapq_df["sig"]
     
     ct = pd.crosstab(xapq_df["pair"], xapq_df["link"], normalize='columns') * 100.0
@@ -318,7 +318,7 @@ def _generate_figure6_xai_contributions():
 # Figure 7: Explanation Generation Time Distribution
 # ------------------------------------------------------------------------------
 def _generate_figure7_explanation_latency_hist(df: pd.DataFrame):
-    xapq_df = df[df["method"] == "XAPQ_TacNet"]
+    xapq_df = df[df["method"] == "XAPQ-TacNet"]
     times_us = xapq_df["explanation_time_us"].dropna()
 
     plt.figure(figsize=(6, 3.5), dpi=300)
@@ -376,8 +376,8 @@ def _generate_table2_statistical_comparison(df: pd.DataFrame):
         "is_infeasible": "sum"
     }).reset_index()
 
-    xapq_rewards = seed_df[seed_df["method"] == "XAPQ_TacNet"]["reward"].values
-    caap_rewards = seed_df[seed_df["method"] == "CAAP_adapted"]["reward"].values
+    xapq_rewards = seed_df[seed_df["method"] == "XAPQ-TacNet"]["reward"].values
+    Oracle_rewards = seed_df[seed_df["method"] == "Exhaustive Oracle"]["reward"].values
 
     header = f"{'Method':<15} | {'Sec Score':<10} | {'Lat Ratio':<10} | {'BW Ratio':<10} | {'Reward':<10} | {'Adapt Acc':<10} | {'MWU p-val':<11} | {'Bonferroni'}"
     print(header)
@@ -385,7 +385,7 @@ def _generate_table2_statistical_comparison(df: pd.DataFrame):
 
     bonf_alpha = 0.05 / 4.0  # 0.0125 for 4 pairwise baseline comparisons
 
-    for method in ["XAPQ_TacNet", "Static", "Random", "RuleBased", "CAAP_adapted"]:
+    for method in ["XAPQ-TacNet", "Static", "Random", "Rule-Based", "Exhaustive Oracle"]:
         m_df = seed_df[seed_df["method"] == method]
         sec = m_df["security_score"].mean()
         lat = m_df["latency_ratio"].mean()
@@ -394,7 +394,7 @@ def _generate_table2_statistical_comparison(df: pd.DataFrame):
         acc = m_df["adaptation_correct"].mean()
 
         m_rewards = m_df["reward"].values
-        if method == "XAPQ_TacNet":
+        if method == "XAPQ-TacNet":
             p_val_str = "N/A (Ref)"
             bonf_str = "N/A"
         else:
@@ -404,15 +404,15 @@ def _generate_table2_statistical_comparison(df: pd.DataFrame):
 
         print(f"{method:<15} | {sec:<10.3f} | {lat:<10.3f} | {bw:<10.3f} | {rew:<10.3f} | {acc*100:<9.1f}% | {p_val_str:<11} | {bonf_str}")
     
-    # TOST Equivalence Test (XAPQ-TacNet vs CAAP on paired rewards with margin delta = 0.05)
-    diff = xapq_rewards - caap_rewards
+    # TOST Equivalence Test (XAPQ-TacNet vs Oracle on paired rewards with margin delta = 0.05)
+    diff = xapq_rewards - Oracle_rewards
     t1, p1 = ttest_1samp(diff + 0.05, 0, alternative='greater')
     t2, p2 = ttest_1samp(diff - 0.05, 0, alternative='less')
     tost_p = max(p1, p2)
 
     print("-" * len(header))
     print(f"Bonferroni-adjusted alpha threshold: alpha_adj = 0.05 / 4 = 0.0125")
-    print(f"TOST Equivalence Test (XAPQ vs CAAP, delta=0.05 margin): TOST p-value = {tost_p:.4e}")
+    print(f"TOST Equivalence Test (XAPQ vs Oracle, delta=0.05 margin): TOST p-value = {tost_p:.4e}")
     if tost_p < 0.05:
         print("  -> STATISTICAL EQUIVALENCE CONFIRMED within ±0.05 reward margin (p < 0.05).")
     else:
@@ -446,3 +446,4 @@ def _generate_table3_feasibility_matrix():
 
 if __name__ == "__main__":
     generate_all_figures_and_tables()
+

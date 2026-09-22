@@ -15,7 +15,7 @@ def compute_footprint():
     theta_bytes = d * 8    # 8*8 = 64 bytes
     per_action_bytes = a_a_bytes + b_a_bytes + theta_bytes  # 640 bytes
 
-    num_actions_max = 12  # SATCOM link (worst case)
+    num_actions_max = 9  # SATCOM link (worst case)
     linucb_ram = num_actions_max * per_action_bytes  # 7,680 bytes
 
     # Adversarial Detector Storage Parameters
@@ -36,7 +36,7 @@ def compute_footprint():
     print("=" * 70)
 
     components = [
-        ("LinUCB matrices (12 actions × 640 B)", linucb_ram),
+        ("LinUCB matrices (9 actions × 640 B)", linucb_ram),
         ("Adversarial detector history (4 links × 20-window)", detector_history_bytes),
         ("Context vector & matrix scratch space", scratch_bytes)
     ]
@@ -52,7 +52,7 @@ def compute_footprint():
 
     print("\nPer-Decision Computation Latency Budget (168 MHz Cortex-M4):")
     print("  • Hard Feasibility Filter (Latency Check) :  ~1.0 µs")
-    print("  • LinUCB Action Selection (12 Actions)    : ~15.0 µs")
+    print("  • LinUCB Action Selection (9 actions)    : ~15.0 µs")
     print("  • XAI Explanation Generation (Measured)  :   9.68 µs")
     print("  • Adversarial Detection (erfc & z-score)  :  ~5.0 µs")
     print("  " + "─" * 60)

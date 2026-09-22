@@ -18,9 +18,9 @@ from tactical_network import create_military_links
 from feasibility_filter import get_feasible_actions, ALL_PQC_PAIRS
 from linucb_selector import PerLinkLinUCB, extract_context_vector, compute_reward
 from xai_engine import XAIEngine
-from baselines import StaticSelector, RandomSelector, RuleBasedSelector, CAAPAdaptedSelector
+from baselines import StaticSelector, RandomSelector, RuleBasedSelector, ExhaustiveOracleSelector
 
-METHODS = ["XAPQ_TacNet", "Static", "Random", "RuleBased", "CAAP_adapted"]
+METHODS = ["XAPQ_TacNet", "Static", "Random", "RuleBased", "Exhaustive_Oracle"]
 NUM_SEEDS = 30
 NUM_STEPS = 1000
 
@@ -58,7 +58,7 @@ def run_full_experiment(num_seeds: int = NUM_SEEDS, num_steps: int = NUM_STEPS, 
         static_sel = StaticSelector()
         random_sel = RandomSelector()
         rule_sel = RuleBasedSelector()
-        caap_sel = CAAPAdaptedSelector()
+        oracle_sel = ExhaustiveOracleSelector()
 
         links = create_military_links()
         for l_obj in links.values():
@@ -133,8 +133,8 @@ def run_full_experiment(num_seeds: int = NUM_SEEDS, num_steps: int = NUM_STEPS, 
                         )
                         reward, sec_score, lat_ratio, bw_ratio = compute_reward(selected_action, link, t_handshake)
 
-                    elif method == "CAAP_adapted":
-                        selected_action = caap_sel.select_action(link, feasible_actions)
+                    elif method == "Exhaustive_Oracle":
+                        selected_action = oracle_sel.select_action(link, feasible_actions)
                         t_handshake, comp_t, trans_t = total_handshake_time(
                             selected_action[0], selected_action[1], link.clock_speed_mhz, link.current_bw_bps
                         )
